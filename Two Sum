@@ -32,15 +32,13 @@ class Solution(object):
 
 # second solution(using hash table)
 
-class solution(object):
-    def twosum(self, nums, target):
-        if len(nums) < 3:
-            return False
-        hash_dict = {}
-        for i in range(len(nums)):
-            if nums[i] in hash_dict:
-                return [hash_dict[nums[i]], i]
-            hash_dict[target - nums[i]] = i
+d = {}
+if len(nums)>1:
+for i in enumerate(nums):
+    if (target - num) in d :  
+        return [d[target-num], i]
+    d[num] = i        
+
 '''
 通过哈希查找，牺牲空间复杂度来换取更快的运行速度，其中，时间复杂度为O(n),空间复杂度为O（n）。
 '''
