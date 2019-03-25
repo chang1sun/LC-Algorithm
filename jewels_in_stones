@@ -1,0 +1,17 @@
+我的stupid方法：
+class Solution(object):
+    def numJewelsInStones(self, J, S):
+        i = 0
+        for x in S:
+            if x in J:
+                i += 1
+        return i
+实际上可以直接用map函数：
+def numJewelsInStones(self, J, S):
+    return sum(map(J.count, S))
+ 再不济，可以用for循环一行解决。。。。。
+ def numJewelsInStones(self, J, S):
+    return sum(s in J for s in S)
+ '''
+ 用python应该总想着代码最优化，遇到简单的问题也要思索最优解，这样才能培养写代码的精简性和易读性。
+ '''
