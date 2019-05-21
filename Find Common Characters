@@ -1,0 +1,28 @@
+Given an array A of strings made only from lowercase letters,
+return a list of all characters that show up in all strings within the list (including duplicates). 
+For example,
+if a character occurs 3 times in all strings but not 4 times, you need to include that character three times in the final answer.
+You may return the answer in any order.
+
+'''
+from collections import Counter
+from functools import reduce
+
+class Solution:
+    def commonChars(self, A: List[str]) -> List[str]:
+        return list(reduce(Counter.__and__, map(Counter, A)).elements())
+'''
+From one awesome solution, only 1 line python got the deal.
+
+What have I learned?
+1.Collection库中Counter函数的实际运用
+2.reduce应用在字典上，本来的函数应用累加效果变成了在相同key上对value的函数应用累加.
+3.位运算的实际运用。
+
+基本思路版本：
+def commonChars(self, A):
+        res = collections.Counter(A[0])
+        for a in A:
+            res &= collections.Counter(a)
+        return list(res.elements())
+      
