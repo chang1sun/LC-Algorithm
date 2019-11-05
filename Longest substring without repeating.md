@@ -14,7 +14,8 @@
 ### 优化版的sliding window
 注意到当第j在hashmap中与第J个元素判等时，可断定J之前，i之后的元素统统不必再循环，因为总会经过J这个字符，且长度逐减
 ##### 代码如下
-'''
+
+'''java
 public class Solution {
     public int lengthOfLongestSubstring(String s) {
         int n = s.length(), ans = 0;
