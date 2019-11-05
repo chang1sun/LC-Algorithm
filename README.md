@@ -1,3 +1,3 @@
 # leetcode
 
-Noob的成长之路
+## Noob的成长之路
