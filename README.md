@@ -2,10 +2,10 @@
 
 
 ## 1. Two Sum
-#### * First solution(easy one):
-    > 整体思想：通过利用一个空数组将原数组中元素迭代，来验证target与原数组中元素的商是否已存在于另一数组，
-    > 如否，则将该元素添加进另一数组。
-    > 其中，时间复杂度为O(x^2).空间复杂度为O(1)
+#### First solution(easy one):
+> 整体思想：通过利用一个空数组将原数组中元素迭代，来验证target与原数组中元素的商是否已存在于另一数组，
+> 如否，则将该元素添加进另一数组。
+> 其中，时间复杂度为O(x^2).空间复杂度为O(1)。
 
 
 ```
@@ -31,7 +31,7 @@ class Solution(object):
 
 ```
 
-#### * Second solution(using hash table)
+#### Second solution(using hash table)
 ```
 d = {}
 
@@ -46,12 +46,12 @@ for i in enumerate(nums):
     d[num] = i        
 ```
 > **通过哈希查找，牺牲空间复杂度来换取更快的运行速度，其中，时间复杂度为O(n),空间复杂度为O（n）。**
-
+---
 ## 2. Add Two Number
-    > Use a variable "carry" to express whether the next digit need to plus 1;
-    > if or not the adding two number's sum > 10, let val be (sum + carry), which can be used later;
-    > Then let carry be val/10, easy to understand that be 1 if val >= 10 while 0 if val<10
-    > Then move the pointer forward, actually we want save storage we use as we can, so let's use ? : operater;
+> Use a variable "carry" to express whether the next digit need to plus 1;
+> if or not the adding two number's sum > 10, let val be (sum + carry), which can be used later;
+> Then let carry be val/10, easy to understand that be 1 if val >= 10 while 0 if val<10
+> Then move the pointer forward, actually we want save storage we use as we can, so let's use ? : operater;
 
  *Here is the code:*
 
