@@ -337,7 +337,46 @@ public class Solution {
 }
 ```
 
+---
 
+## 6. Longest palindromic Substring
+*Assume it's a dynamic programing problem. What we need to solve is find what changed and what remaind the same within solving process;*
+#### Noticed the palindromic substring:
+*It means we just need to set a iterator from 0 to the end of the String; Then set **two pointer which moves forward and backward** to check if the characters are same;*
+
+### *Here is the code:*
+```
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        maxstr = "", ls = len(s)
+        if (len(s) == 1) or (len(s) == 0):
+            return s
+        for i in range(ls-1):
+            if i>0 and (s[i-1] == s[i+1]):
+                j,k = i+1,i-1
+                while k>=0 and j<ls and(s[k]==s[j]):
+                    if len(maxstr) < len(s[k:j+1]):
+                        maxstr = s[k:j+1]
+                    k-=1
+                    j+=1
+            if s[i] == s[i+1]:
+                j, k = i+1, i
+                while k>=0 and j<ls and (s[k]==s[j]):
+                    if len(maxstr) < len(s[k:j+1]):
+                        maxstr = s[k:j+1]
+                    k-=1
+                    j+=1
+            if (s[i] != s[i+1]) and (i>0 and (s[i-1] != s[i+1])):
+                i+=1
+        if maxstr == "":
+            return s[0]
+        else:
+            return maxstr
+```
+
+---
+
+## Median of Two Sorted Array
 
 
 
