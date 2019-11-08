@@ -149,7 +149,7 @@ def commonChars(self, A):
 
 *I try to use the array's method slice, but it proves wrong until I try every way I can imagine. Because it's difficult to* 
 
-*make the sort that one small one big and they have to be sorted in reversed way. Well, let's check a terrific code:
+*make the sort that one small one big and they have to be sorted in reversed way. Well, let's check a terrific code:*
 
 
 > **We simulate the reversed process.**
@@ -196,6 +196,149 @@ def commonChars(self, A):
 
   ```      
 ***Anyway, when you got no idea, just might as well read the qurrys itself, then you will find some particular methods.***      
+
+---
+
+## 4. Sort Array By Parity
+
+### *MY first vision:
+
+
+class Solution(object):
+
+```
+def sortArrayByParity(self, A):
+
+        new = []
+
+        for i in A:
+
+            if i % 2 == 0:
+
+                new.append(i)
+
+                A.remove(i)
+
+        new.extend(A)
+
+        return new
+
+```     
+
+> *A awesome vision which beats 99% from comment:*
+```
+
+class Solution:
+
+    def sortArrayByParity(self, A):
+
+        """
+
+        :type A: List[int]
+
+        :rtype: List[int]
+
+        """
+
+        start, end = 0, len(A) - 1
+
+        while start < end:
+
+            m, n = A[start], A[end]
+
+            if m % 2 == 1 and n % 2 == 0:   
+
+                A[start], A[end] = n, m     # swap odd and even
+
+            elif m % 2 == 1:                #if end is not even
+
+                end -= 1
+
+            elif n % 2 == 0:                #if start is not odd
+
+                start += 1
+
+            else:
+
+                start += 1
+
+                end -= 1
+
+        return A
+
+ ```         
+
+> *Here is a same idea but shorter:*
+
+
+```
+class Solution(object):
+
+    def sortArrayByParity(self, A):
+
+        """
+
+        :type A: List[int]
+
+        :rtype: List[int]
+
+        """
+
+        l, r = 0, len(A) - 1
+
+        while l < r:            
+
+            if A[l] & 1:                  #位运算与（一个判断奇偶性的不错的方法！）
+
+                A[l], A[r] = A[r], A[l]
+
+            l += not (A[l] & 1)
+
+            r -= A[r] & 1
+
+        return A
+
+```
+
+---
+
+## 5. Longest substring without repeating
+
+### 暴力法
+> *此题解决方法用暴力法的思路很简单，两次循环，再将已遍历元素push进数组，判等时迭代，从而再一遍循环，所以时间复杂度为O(n^3);*
+### sliding window法
+> *考虑到利用hashmap，只需一次循环，便可找出最长字串，即从i=0，每当遍历一个字符，判断它是否在hash表内，只需常数时间的复杂度，接下来:*
+
+> 如果无：
+> **接着向后推j，i的位置不变**
+
+> 如果有：
+> **则取max值为max(i-j, max),向后推i, j的位置不变.**
+##### 时间复杂度为O（2n）即O（n）
+### 优化版的sliding window
+注意到当第j在hashmap中与第J个元素判等时，可断定J之前，i之后的元素统统不必再循环，因为总会经过J这个字符，且长度逐减
+##### 代码如下
+
+```
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length(), ans = 0;
+        Map<Character, Integer> map = new HashMap<>(); // current index of character
+        // try to extend the range [i, j]
+        for (int j = 0, i = 0; j < n; j++) {
+            if (map.containsKey(s.charAt(j))) {
+                i = Math.max(map.get(s.charAt(j)), i);
+            }
+            ans = Math.max(ans, j - i + 1);
+            map.put(s.charAt(j), j + 1);
+        }
+        return ans;
+    }
+}
+```
+
+
+
 
 
       
