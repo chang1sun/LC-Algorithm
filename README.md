@@ -46,12 +46,17 @@ for i in enumerate(nums):
     d[num] = i        
 ```
 > **通过哈希查找，牺牲空间复杂度来换取更快的运行速度，其中，时间复杂度为O(n),空间复杂度为O（n）。**
+
 ---
+
 ## 2. Add Two Number
-> Use a variable "carry" to express whether the next digit need to plus 1;
-> if or not the adding two number's sum > 10, let val be (sum + carry), which can be used later;
-> Then let carry be val/10, easy to understand that be 1 if val >= 10 while 0 if val<10
-> Then move the pointer forward, actually we want save storage we use as we can, so let's use ? : operater;
+> **Use a variable "carry" to express whether the next digit need to plus 1;**
+
+> **if or not the adding two number's sum > 10, let val be (sum + carry), which can be used later;**
+
+> **Then let carry be val/10, easy to understand that be 1 if val >= 10 while 0 if val<10;**
+
+> **Then move the pointer forward, actually we want save storage we use as we can, so let's use ? : operater;**
 
  *Here is the code:*
 
@@ -92,3 +97,109 @@ public:
 
 };
 ```
+---
+
+## 3. Find Common Characters
+
+> ***From one awesome solution, only 1 line python got the deal.***
+
+```
+
+from collections import Counter
+
+from functools import reduce
+
+
+
+class Solution:
+
+    def commonChars(self, A: List[str]) -> List[str]:
+
+        return list(reduce(Counter.__and__, map(Counter, A)).elements())
+
+```
+
+> *What have I learned?*
+
+   > 1. **Collection库中Counter函数的实际运用**
+
+   > 2. **reduce应用在字典上，本来的函数应用累加效果变成了在相同key上对value的函数应用累加.**
+
+   > 3. **位运算的实际运用。**
+
+
+
+### 基本思路版本：
+
+```
+def commonChars(self, A):
+
+        res = collections.Counter(A[0])
+
+        for a in A:
+
+            res &= collections.Counter(a)
+
+        return list(res.elements())
+```
+---
+
+## 3. Reveal Cards In Increasing Order
+*It's disappointed that I have no good idea about manage it in a way that has a less time complexible than O(n!)*
+
+*I try to use the array's method slice, but it proves wrong until I try every way I can imagine. Because it's difficult to* 
+
+*make the sort that one small one big and they have to be sorted in reversed way. Well, let's check a terrific code:
+
+
+> **We simulate the reversed process.**
+
+> **Initial an empty list or deque or queue,**
+
+> **each time rotate the last element to the first,**
+
+> **and append a the next biggest number to the left.**
+
+
+
+Time complexity:
+
+O(NlogN) to sort,
+
+O(N) to construct using <u>deque or queue</u>.
+
+
+   ### 1.Python, using list, O(N^2):
+```
+    def deckRevealedIncreasing(self, deck):
+
+        d = []
+
+        for x in sorted(deck)[::-1]:
+
+            d = [x] + d[-1:] + d[:-1]
+
+        return d
+```
+        
+
+   ### 2.Python, using deque:
+
+```
+    def deckRevealedIncreasing(self, deck):
+
+        d = collections.deque()
+
+        for x in sorted(deck)[::-1]:
+
+            d.rotate()
+
+            d.appendleft(x)
+
+        return list(d)
+
+  ```      
+***Anyway, when you got no idea, just might as well read the qurrys itself, then you will find some particular methods. ***      
+
+
+      
