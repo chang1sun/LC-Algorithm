@@ -162,11 +162,7 @@ def commonChars(self, A):
 
 
 
-Time complexity:
-
-O(NlogN) to sort,
-
-O(N) to construct using <u>deque or queue</u>.
+### Time complexity:  O(NlogN) to sort, O(N) to construct using deque or queue.
 
 
    ### 1.Python, using list, O(N^2):
@@ -199,7 +195,7 @@ O(N) to construct using <u>deque or queue</u>.
         return list(d)
 
   ```      
-***Anyway, when you got no idea, just might as well read the qurrys itself, then you will find some particular methods. ***      
+***Anyway, when you got no idea, just might as well read the qurrys itself, then you will find some particular methods.***      
 
 
       
