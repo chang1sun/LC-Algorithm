@@ -418,8 +418,55 @@ class Solution:
 ```
 ---
 
+## Median of Two Sorted Array
+### Time complexity requirement: **O(log(m+n))**
+> ***Note the limit on time complexity, we can't just combine two array and sorted it later, because it takes O(nlog(n)) time complexity;***
+***So let's try binary way to solve this, set the two array A and B.***
 
+### 1. First of all, the condition that a median must be satisfied in this problem only contains two limitation:
+       1. *set two pointer: i for A, j for B; Then we must find the most fitted i that A[i] is most closed to B[j].*
+       2. *i for the A plus j for the B must equal the halflength(when len(A)+len(B) is odd)*
+### 2. How to control j by i's change?
+    > *use i + j = halflen, so j = halflen - i*
+   
+#### *Here is the code:*
+···
+class Solution:
+    def findMedianSortedArrays(self,A, B):
+        m, n = len(A), len(B)
+        if m > n:
+            A, B, m, n = B, A, n, m
+        if n == 0:
+            raise ValueError
 
+        imin, imax, half_len = 0, m, (m + n + 1) / 2
+        while imin <= imax:
+            i = (imin + imax) / 2
+            j = half_len - i
+            if i < m and B[j-1] > A[i]:
+                # i is too small, must increase it
+                imin = i + 1
+            elif i > 0 and A[i-1] > B[j]:
+                # i is too big, must decrease it
+                imax = i - 1
+            else:
+                # i is perfect
 
+                if i == 0: max_of_left = B[j-1]
+                elif j == 0: max_of_left = A[i-1]
+                else: max_of_left = max(A[i-1], B[j-1])
+
+                if (m + n) % 2 == 1:
+                    return max_of_left
+
+                if i == m: min_of_right = B[j]
+                elif j == n: min_of_right = A[i]
+                else: min_of_right = min(A[i], B[j])
+  
+                return (max_of_left + min_of_right) / 2.0
+
+···
+
+---
 
       
