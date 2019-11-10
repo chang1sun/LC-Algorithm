@@ -376,7 +376,49 @@ class Solution:
 
 ---
 
-## Median of Two Sorted Array
+## Three Sum
+*This problem costs me a lot time, just because there are a bunch of check point which needs you to debug and go on and go on...*
+> **Actually it's not a difficult problem associate with array, and O(n^2) is the best solution in my view;**
+#### key: Sorted Array, Two Pointer
+> ***First of all, let's sort the array;
+> Use i to be the iterator, j and k be two pointers, let nums[i]+nums[j]+nums[k] be target and check its pos or neg, 
+> by which to move one of the two pointers forward or backward***
+
+*here is my python code:
+```
+class Solution:
+    def threeSum(self, nums):
+        nums = sorted(nums)
+        ls = len(nums)
+        if ls < 3:
+            return
+        ans = []
+        for i in range(ls):
+            j = i+1
+            k = ls - 1
+            if nums[i]>0:
+                break
+            if i>0 and nums[i] == nums[i-1]:
+                continue
+            while j<k:
+                target = nums[i]+nums[j]+nums[k]
+                if target < 0:
+                    j+=1
+                elif target > 0:
+                    k-=1
+                else:
+                    ans.append([nums[i],nums[j],nums[k]])
+                    while j < k and nums[j] == nums[j+1]:
+                        j+=1
+                    while k > j and nums[k] == nums[k-1]:
+                        k-=1
+                    j+=1
+                    k-=1
+        return ans
+```
+---
+
+
 
 
 
