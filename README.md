@@ -377,14 +377,14 @@ class Solution:
 ---
 
 ## Three Sum
-*This problem costs me a lot time, just because there are a bunch of check point which needs you to debug and go on and go on...*
+*This problem costs me a lot time, just because there is a pile of check point which needs you to debug and go on and go on...*
 > **Actually it's not a difficult problem associate with array, and O(n^2) is the best solution in my view;**
 #### key: Sorted Array, Two Pointer
 > ***First of all, let's sort the array;
 > Use i to be the iterator, j and k be two pointers, let nums[i]+nums[j]+nums[k] be target and check its pos or neg, 
 > by which to move one of the two pointers forward or backward***
 
-*here is my python code:
+#### *here is my python code*:
 ```
 class Solution:
     def threeSum(self, nums):
