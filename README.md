@@ -376,7 +376,7 @@ class Solution:
 
 ---
 
-## Three Sum
+## 7. Three Sum
 *This problem costs me a lot time, just because there is a pile of check point which needs you to debug and go on and go on...*
 > **Actually it's not a difficult problem associate with array, and O(n^2) is the best solution in my view;**
 #### key: Sorted Array, Two Pointer
@@ -418,19 +418,19 @@ class Solution:
 ```
 ---
 
-## Median of Two Sorted Array
+## 8. Median of Two Sorted Array
 ### Time complexity requirement: **O(log(m+n))**
 > ***Note the limit on time complexity, we can't just combine two array and sorted it later, because it takes O(nlog(n)) time complexity;***
 ***So let's try binary way to solve this, set the two array A and B.***
 
 ### 1. First of all, the condition that a median must be satisfied in this problem only contains two limitation:
-       1. *set two pointer: i for A, j for B; Then we must find the most fitted i that A[i] is most closed to B[j].*
-       2. *i for the A plus j for the B must equal the halflength(when len(A)+len(B) is odd)*
+  1. *set two pointer: i for A, j for B; Then we must find the most fitted i that A[i] is most closed to B[j].*
+  2. *i for the A plus j for the B must equal the halflength(when len(A)+len(B) is odd)*
 ### 2. How to control j by i's change?
-    > *use i + j = halflen, so j = halflen - i*
+***use i + j = halflen, so j = halflen - i***
    
 #### *Here is the code:*
-···
+```
 class Solution:
     def findMedianSortedArrays(self,A, B):
         m, n = len(A), len(B)
@@ -464,8 +464,7 @@ class Solution:
                 else: min_of_right = min(A[i], B[j])
   
                 return (max_of_left + min_of_right) / 2.0
-
-···
+```
 
 ---
 
